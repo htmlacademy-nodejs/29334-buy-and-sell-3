@@ -1,7 +1,7 @@
 # Учебный проект «Куплю. Продам» [![Build status][travis-image]][travis-url]
 
-* Студент: [Александр Комаров](https://up.htmlacademy.ru/nodejs/3/user/29334).
-* Наставник: `Неизвестно`.
+- Студент: [Александр Комаров](https://up.htmlacademy.ru/nodejs/3/user/29334).
+- Наставник: [Алексей Марунин](https://htmlacademy.ru/profile/id1402867).
 
 ---
 
