@@ -71,7 +71,7 @@ const generateOffers = (count) =>
 
 module.exports = {
   name: `--generate`,
-  async run(args) {
+  run(args) {
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     if (countOffer > MAX_OFFERS) {
