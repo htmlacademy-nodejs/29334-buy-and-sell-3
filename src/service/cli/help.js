@@ -1,6 +1,6 @@
 "use strict";
 
-const chalk = require("chalk");
+const chalk = require(`chalk`);
 const { ExitCode } = require(`../../constants`);
 
 module.exports = {
@@ -8,9 +8,9 @@ module.exports = {
   run() {
     console.info(`
     Команды:
-    ${chalk.green(`--version`)}:            выводит номер версии
-    ${chalk.green(`--help`)}:               печатает этот текст
-    ${chalk.green(`--generate <count>`)}    формирует файл mocks.json
+    ${chalk.grey(`--version`)}:            выводит номер версии
+    ${chalk.grey(`--help`)}:               печатает этот текст
+    ${chalk.grey(`--generate <count>`)}    формирует файл mocks.json
     `);
     process.exit(ExitCode.success);
   },
