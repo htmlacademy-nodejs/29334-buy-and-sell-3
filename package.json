@@ -20,6 +20,7 @@
   "homepage": "https://github.com/alexandrkaa/29334-buy-and-sell-3#readme",
   "devDependencies": {
     "eslint": "7.11.0",
-    "eslint-config-htmlacademy": "0.6.0"
+    "eslint-config-htmlacademy": "0.6.0",
+    "nodemon": "2.0.6"
   }
 }
