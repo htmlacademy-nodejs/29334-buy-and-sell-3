@@ -1,4 +1,3 @@
-"use strict";
 // const fs = require(`fs`);
 const chalk = require(`chalk`);
 // const util = require(`util`);
@@ -53,9 +52,15 @@ const generateOffers = (count, titles, categories, sentences) =>
 module.exports = {
   name: `--generate`,
   async run(args) {
-    const sentences = await readContent(FILE_SENTENCES_PATH);
-    const titles = await readContent(FILE_TITLES_PATH);
-    const categories = await readContent(FILE_CATEGORIES_PATH);
+    const sentences = await (await readContent(FILE_SENTENCES_PATH)).filter(
+      (it) => it !== ``
+    );
+    const titles = await (await readContent(FILE_TITLES_PATH)).filter(
+      (it) => it !== ``
+    );
+    const categories = await (await readContent(FILE_CATEGORIES_PATH)).filter(
+      (it) => it !== ``
+    );
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     if (countOffer > MAX_OFFERS) {
