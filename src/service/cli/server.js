@@ -55,6 +55,7 @@ module.exports = {
     http
       .createServer(onClientConnect)
       .listen(port)
+      .on(`error`, console.log)
       .on(`listening`, (err) => {
         if (err) {
           return console.error(`Ошибка при создании сервера`, err);
