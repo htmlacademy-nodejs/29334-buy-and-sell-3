@@ -1,9 +1,11 @@
+"use strict";
+
 // const fs = require(`fs`);
 const chalk = require(`chalk`);
 // const util = require(`util`);
 const fs = require(`fs`).promises;
-const { ExitCode } = require(`../../constants`);
-const { getRandomInt, shuffle } = require(`../../utils`);
+const {ExitCode} = require(`../../constants`);
+const {getRandomInt, shuffle} = require(`../../utils`);
 const {
   // TITLES,
   // SENTENCES,
@@ -39,7 +41,7 @@ const generateOffers = (count, titles, categories, sentences) =>
     .map(() => ({
       title: titles[getRandomInt(0, titles.length - 1)],
       picture: getPictureFileName(
-        getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)
+          getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)
       ),
       description: shuffle(sentences).slice(1, 5).join(` `),
       type: Object.keys(OfferType)[
@@ -53,13 +55,13 @@ module.exports = {
   name: `--generate`,
   async run(args) {
     const sentences = await (await readContent(FILE_SENTENCES_PATH)).filter(
-      (it) => it !== ``
+        (it) => it !== ``
     );
     const titles = await (await readContent(FILE_TITLES_PATH)).filter(
-      (it) => it !== ``
+        (it) => it !== ``
     );
     const categories = await (await readContent(FILE_CATEGORIES_PATH)).filter(
-      (it) => it !== ``
+        (it) => it !== ``
     );
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
@@ -68,7 +70,7 @@ module.exports = {
       process.exit(ExitCode.error);
     }
     const content = JSON.stringify(
-      generateOffers(countOffer, titles, categories, sentences)
+        generateOffers(countOffer, titles, categories, sentences)
     );
 
     try {
