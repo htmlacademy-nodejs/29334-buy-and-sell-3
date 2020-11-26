@@ -1,7 +1,7 @@
 "use strict";
 const chalk = require(`chalk`);
 const packageJsonFile = require(`../../../package.json`);
-const { ExitCode } = require(`../../constants`);
+const {ExitCode} = require(`../../constants`);
 
 module.exports = {
   name: `--version`,

@@ -1,17 +1,11 @@
 "use strict";
 
-const { mainRouter } = require(`./main`);
-const { loginRouter } = require(`./login`);
-const { myRouter } = require(`./my`);
-const { offersRouter } = require(`./offers`);
-const { registerRouter } = require(`./register`);
-const { searchRouter } = require(`./search`);
+const {mainRoutes} = require(`./main-routes`);
+const {myRoutes} = require(`./my-routes`);
+const {offersRoutes} = require(`./offers-routes`);
 
 module.exports = {
-  mainRouter,
-  loginRouter,
-  myRouter,
-  offersRouter,
-  registerRouter,
-  searchRouter,
+  mainRoutes,
+  myRoutes,
+  offersRoutes,
 };
