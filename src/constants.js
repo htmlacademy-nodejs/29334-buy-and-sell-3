@@ -17,9 +17,15 @@ const HttpCode = {
   UNAUTHORIZED: 401,
 };
 
+const PORT = 8080;
+
+const PUBLIC_DIR = `public`;
+
 module.exports = {
   DEFAULT_COMMAND,
   USER_ARGV_INDEX,
   ExitCode,
   HttpCode,
+  PORT,
+  PUBLIC_DIR,
 };

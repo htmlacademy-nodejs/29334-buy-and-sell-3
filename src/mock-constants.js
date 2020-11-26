@@ -18,5 +18,5 @@ const PictureRestrict = {
 module.exports = {
   OfferType,
   SumRestrict,
-  PictureRestrict
+  PictureRestrict,
 };
