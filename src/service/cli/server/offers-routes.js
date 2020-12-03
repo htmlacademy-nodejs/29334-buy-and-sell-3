@@ -14,8 +14,9 @@ offersRoutes.get(`/`, async (req, res) => {
     const mocks = JSON.parse(fileContent);
     res.json(mocks);
   } catch (err) {
-    console.log(err);
-    res.status(HttpCode.INTERNAL_SERVER_ERROR).send(err);
+    // res.status(HttpCode.INTERNAL_SERVER_ERROR).send(err);
+    const empty = [];
+    res.json(empty);
   }
 });
 
