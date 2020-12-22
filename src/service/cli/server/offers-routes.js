@@ -12,11 +12,11 @@ offersRoutes.get(`/`, async (req, res) => {
       join(__dirname, `..`, `..`, `..`, `..`, MOCKS_FILENAME)
     );
     const mocks = JSON.parse(fileContent);
-    res.json(mocks);
+    return res.json(mocks);
   } catch (err) {
     // res.status(HttpCode.INTERNAL_SERVER_ERROR).send(err);
     const empty = [];
-    res.json(empty);
+    res.status(HttpCode.OK).json(empty);
   }
 });
 
