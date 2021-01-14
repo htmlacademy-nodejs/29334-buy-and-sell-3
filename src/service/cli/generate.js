@@ -1,15 +1,10 @@
 "use strict";
 
-// const fs = require(`fs`);
 const chalk = require(`chalk`);
-// const util = require(`util`);
 const fs = require(`fs`).promises;
-const {ExitCode} = require(`../../constants`);
+const {ExitCode, MAX_ID_LENGTH} = require(`../../constants`);
 const {getRandomInt, shuffle} = require(`../../utils`);
 const {
-  // TITLES,
-  // SENTENCES,
-  // CATEGORIES,
   OfferType,
   SumRestrict,
   PictureRestrict,
@@ -17,10 +12,13 @@ const {
 const FILE_SENTENCES_PATH = `./data/sentences.txt`;
 const FILE_TITLES_PATH = `./data/titles.txt`;
 const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+const FILE_COMMENTS_PATH = `./data/comments.txt`;
+const {nanoid} = require(`nanoid`);
 
 const DEFAULT_COUNT = 1;
 const FILE_NAME = `mocks.json`;
 const MAX_OFFERS = 1000;
+const MAX_COMMENTS = 5;
 
 const getPictureFileName = (number) =>
   `item${number.toString().padStart(2, 0)}.jpg`;
@@ -35,10 +33,12 @@ const readContent = async (filePath) => {
   }
 };
 
-const generateOffers = (count, titles, categories, sentences) =>
+const generateOffers = (count, titles, categories, sentences, comments) =>
   Array(count)
     .fill({})
     .map(() => ({
+      id: nanoid(MAX_ID_LENGTH),
+      category: [categories[getRandomInt(0, categories.length - 1)]],
       title: titles[getRandomInt(0, titles.length - 1)],
       picture: getPictureFileName(
         getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)
@@ -48,7 +48,15 @@ const generateOffers = (count, titles, categories, sentences) =>
         Math.floor(Math.random() * Object.keys(OfferType).length)
       ],
       sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
-      category: [categories[getRandomInt(0, categories.length - 1)]],
+      comments: generateComments(getRandomInt(1, MAX_COMMENTS), comments),
+    }));
+
+const generateComments = (count, comments) =>
+  Array(count)
+    .fill({})
+    .map(() => ({
+      id: nanoid(MAX_ID_LENGTH),
+      text: shuffle(comments).slice(0, getRandomInt(1, 3)).join(` `),
     }));
 
 module.exports = {
@@ -63,6 +71,9 @@ module.exports = {
     const categories = await (await readContent(FILE_CATEGORIES_PATH)).filter(
       (it) => it !== ``
     );
+    const comments = await (await readContent(FILE_COMMENTS_PATH)).filter(
+      (it) => it !== ``
+    );
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     if (countOffer > MAX_OFFERS) {
@@ -70,7 +81,7 @@ module.exports = {
       process.exit(ExitCode.error);
     }
     const content = JSON.stringify(
-      generateOffers(countOffer, titles, categories, sentences)
+      generateOffers(countOffer, titles, categories, sentences, comments)
     );
 
     try {

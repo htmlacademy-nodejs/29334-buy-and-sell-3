@@ -7,6 +7,9 @@ const {offersRoutes} = require(`./offers-routes.js`);
 const app = express();
 app.use(express.json());
 app.use(`/offers`, offersRoutes);
+const routes = require(`../../api`);
+
+app.use(`/api`, routes);
 
 module.exports = {
   name: `--server`,
