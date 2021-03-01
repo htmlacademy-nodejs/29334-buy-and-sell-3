@@ -13,7 +13,7 @@ const getMockData = async () => {
 
   try {
     const fileContent = await fs.readFile(
-      join(__dirname, `..`, `..`, `..`, MOCKS_FILENAME)
+        join(__dirname, `..`, `..`, `..`, MOCKS_FILENAME)
     );
 
     data = JSON.parse(fileContent);
